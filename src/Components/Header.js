@@ -21,6 +21,9 @@ const useStyles = makeStyles(() => ({
     fontWeight: "bold",
     cursor: "pointer",
   },
+  ban:{
+    backgroundImage:'url(./banner2.jpg)',
+  },
 }));
 
 const Header = () => {
@@ -40,7 +43,7 @@ const Header = () => {
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={darkTheme}  >
       <AppBar color="transparent" position="static">
         <Container>
           <Toolbar>
