@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CoinList } from "../Config/api";
 import axios from "axios";
 import { CryptoState } from "../CryptoContext";
-import { LinearProgress, TableContainer, TableHead,Table, TextField, colors, createTheme, TableRow } from "@mui/material";
+import { LinearProgress, TableContainer, TableHead,Table, TextField, colors, createTheme, TableRow, TableCell, TableBody } from "@mui/material";
 import { ThemeProvider } from "@mui/styles";
 import { Container, Typography } from "@mui/material";
 
@@ -31,6 +31,12 @@ const CoinsTable = () => {
       type: "dark",
     },
   });
+
+  const handleSearcj = () =>{
+    return coins.filter((coin) => (
+      coin.name.toLowerCase().includes(search)
+    ))
+  }
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: "center" }}>
@@ -53,15 +59,24 @@ const CoinsTable = () => {
                     <LinearProgress style={{ backgroundColor:'gold'}}></LinearProgress>
                 ) : (
                     <Table>
-                        <TableHead style={{ backgroundColor:"blue"}}>
+                        <TableHead style={{ backgroundColor:"lightblue"}}>
                            <TableRow>
-                            {[]}
+                            {["Coin" , "Price" , "24h Change", "Market Cap"].map((head) => (
+                              <TableCell style={{color:"black", fontWeight:"700" , fontFamily:"Montserrat",}} key={head} 
+                               align={head === "Coin" ? "" : "right"}
+                              >
+                               {head}
+                              </TableCell>
+                            ))}
                            </TableRow>
                         </TableHead>
+                        <TableBody>{handleSearcj().map(row => )}</TableBody>
                     </Table>
                 )
             }
+
         </TableContainer>
+
       </Container>
     </ThemeProvider>
   );
