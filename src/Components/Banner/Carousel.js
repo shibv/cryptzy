@@ -6,28 +6,31 @@ import { TrendingCoins } from "../../Config/api";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
 
+// css
 const useStyles = makeStyles(() => ({
   carousel: {
     marginTop: 50,
   },
   carouselItems: {
-    display:'flex',
-    flexDirection: 'column',
-    alignItems:'center',
-    cursor:'pointer',
-    textTransform:'uppercase',
-    color:'white',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    cursor: "pointer",
+    textTransform: "uppercase",
+    color: "white",
   },
 }));
-
 
 // Integer number with commas function
 export function numberWithCommas(x) {
   return x.toLocaleString("en-US");
 }
 
+// function of carousal
 const Carousel = (props) => {
+
   const [trending, setTrending] = useState([]);
+  
   const classess = useStyles(props);
 
   const { currency, symbol } = CryptoState();
@@ -53,17 +56,19 @@ const Carousel = (props) => {
           height="80"
           style={{ marginBottom: 10 }}
         ></img>
-        <span style={{
-          color: profit > 0 ? "rgb(14,203,129)": "red",
-          fontWeight:500,
-        }}>
+        <span
+          style={{
+            color: profit > 0 ? "rgb(14,203,129)" : "red",
+            fontWeight: 500,
+          }}
+        >
           {coin?.symbol}
           &nbsp;
           <span>
             {profit && "+"} {coin?.price_change_percentage_24h?.toFixed(2)}%
           </span>
         </span>
-        <span style={{fontSize:22, fontWeight:500}} > 
+        <span style={{ fontSize: 22, fontWeight: 500 }}>
           {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
         </span>
       </Link>
