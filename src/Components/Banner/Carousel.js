@@ -28,18 +28,23 @@ export function numberWithCommas(x) {
 
 // function of carousal
 const Carousel = (props) => {
-
   const [trending, setTrending] = useState([]);
-  
+
   const classess = useStyles(props);
 
   const { currency, symbol } = CryptoState();
 
+ // using api we are fetching data
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency));
+   console.log({data})
     setTrending(data);
   };
-  console.log(trending);
+  // const fetchTrendingCoins = () => {
+  //   return axios.get(TrendingCoins(currency)).then((res) => setTrending(res.data))
+  // }
+ 
+ // console.log(trending);
   useEffect(() => {
     fetchTrendingCoins();
   }, [currency]);
