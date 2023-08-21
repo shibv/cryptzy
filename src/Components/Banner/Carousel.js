@@ -48,13 +48,13 @@ const Carousel = (props) => {
   useEffect(() => {
     fetchTrendingCoins();
   }, [currency]);
-
   // items
   const items = trending.map((coin) => {
     let profit = coin.price_change_percentage_24h >= 0;
 
     return (
       <Link className={classess.carouselItems} to={`/coins/${coin.id}`}>
+       
         <img
           src={coin?.image}
           alt={coin.name}

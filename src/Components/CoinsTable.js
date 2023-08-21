@@ -22,6 +22,10 @@ import { makeStyles } from "@mui/styles";
 
 //import {useHistory} from "react-router-dom"
 
+export function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const useStyles = makeStyles(() => ({
   row: {
     backgroundColor: "#16171a",
@@ -46,19 +50,32 @@ const CoinsTable = (props) => {
   // loading coins from api
   const [loading, setLoading] = useState(false);
   // search functionality
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState(".");
   // for navigating particular crypto coin
   const history = useNavigate();
 
   // for pagination
   const [page, setPage] = useState(1);
 
+  // const fetchCoins = async () => {
+  //   setLoading(true);
+  //   const { data } = await axios.get(CoinList(currency)); // through curely on data we are destructuring our data
+  //   setCoins(data);
+  //   setLoading(false);
+  // };
+
   const fetchCoins = async () => {
-    setLoading(true);
-    const { data } = await axios.get(CoinList(currency)); // through curely on data we are destructuring our data
-    setCoins(data);
-    setLoading(false);
-  };
+    setLoading(true)
+    try {
+      const { data } = await axios.get(CoinList(currency)); 
+      console.log(data);
+      setCoins(data)
+    setLoading(false)
+    } catch (error) {
+      console.error('Axios Error:', error);
+    }
+    
+  }
 
  // console.log(coins);
   useEffect(() => {
@@ -103,7 +120,7 @@ const CoinsTable = (props) => {
         <TableContainer>
           {loading ? (
             <LinearProgress style={{ backgroundColor: "gold" }} />
-          ) : (
+          ) : ( 
             <Table aria-label="simple table">
               <TableHead style={{ backgroundColor: "#EEBC1D" }}>
                 <TableRow>
