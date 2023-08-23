@@ -77,12 +77,12 @@ const CoinPage = ( props) => {
     
     setCoin(data);
   }
-  console.log(coin?.description)
+
   useEffect(() =>{
     fetchCoin()
   }, [])
   const classess = useStyles(props);
-  if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
+  if (!coin) return <LinearProgress style={{ backgroundColor: "aqua" }} />;
   return (
     <div className={classess.container}>
        <div className={classess.sidebar}>

@@ -37,7 +37,7 @@ const useStyles = makeStyles(() => ({
   },
   pagination: {
     "& .MuiPaginationItem-root": {
-      color: "gold",
+      color: "aqua",
     },
   },
 }));
@@ -119,10 +119,10 @@ const CoinsTable = (props) => {
         ></TextField>
         <TableContainer>
           {loading ? (
-            <LinearProgress style={{ backgroundColor: "gold" }} />
+            <LinearProgress style={{ backgroundColor: "aqua" }} />
           ) : ( 
             <Table aria-label="simple table">
-              <TableHead style={{ backgroundColor: "#EEBC1D" }}>
+              <TableHead style={{ backgroundColor: "aqua" }}>
                 <TableRow>
                   {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
                     <TableCell
