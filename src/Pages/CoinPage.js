@@ -22,7 +22,7 @@ const CoinPage = ( ) => {
   const {currency, symbol} = CryptoState();
 
   const fetchCoin = async()  => {
-    const {data} = await axios.get(SingleCoin(id));
+    const {data} = await axios.get( `https://api.coingecko.com/api/v3/coins/${id}`);
     
     setCoin(data);
   }
