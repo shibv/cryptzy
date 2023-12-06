@@ -5,6 +5,9 @@ import { CryptoState } from "../../CryptoContext";
 import { TrendingCoins } from "../../Config/api";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
+import {
+  LinearProgress
+} from "@mui/material";
 
 // css
 const useStyles = makeStyles(() => ({
@@ -31,20 +34,17 @@ const Carousel = (props) => {
   const [trending, setTrending] = useState([]);
 
   const classess = useStyles(props);
+  const [loading, setLoading] = useState(false);
 
   const { currency, symbol } = CryptoState();
 
  // using api we are fetching data
   const fetchTrendingCoins = async () => {
+    setLoading(true);
     const { data } = await axios.get(TrendingCoins(currency));
-   console.log({data})
     setTrending(data);
+    setLoading(false);
   };
-  // const fetchTrendingCoins = () => {
-  //   return axios.get(TrendingCoins(currency)).then((res) => setTrending(res.data))
-  // }
- 
- // console.log(trending);
   useEffect(() => {
     fetchTrendingCoins();
   }, [currency]);
@@ -92,17 +92,22 @@ const Carousel = (props) => {
 
   return (
     <div className={classess.carousel}>
-      <AliceCarousel
-        mouseTracking
-        infinite
-        autoPlayInterval={1000}
-        animationDuration={1500}
-        disableDotsControls
-        disableButtonsControls
-        responsive={responsive}
-        autoPlay
-        items={items}
-      ></AliceCarousel>
+      
+       { loading ? ( <LinearProgress style={{ backgroundColor: "aqua" }} />) : (
+          <AliceCarousel
+          mouseTracking
+          infinite
+          autoPlayInterval={1000}
+          animationDuration={1500}
+          disableDotsControls
+          disableButtonsControls
+          responsive={responsive}
+          autoPlay
+          items={items}
+        ></AliceCarousel>
+
+        )}
+      
     </div>
   );
 };

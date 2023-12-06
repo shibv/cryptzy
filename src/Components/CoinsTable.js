@@ -8,7 +8,6 @@ import {
   TableHead,
   Table,
   TextField,
-  colors,
   createTheme,
   TableRow,
   TableCell,
@@ -20,7 +19,6 @@ import { Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 
-//import {useHistory} from "react-router-dom"
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -50,35 +48,26 @@ const CoinsTable = (props) => {
   // loading coins from api
   const [loading, setLoading] = useState(false);
   // search functionality
-  const [search, setSearch] = useState(".");
+  const [search, setSearch] = useState("a");
   // for navigating particular crypto coin
   const history = useNavigate();
 
   // for pagination
   const [page, setPage] = useState(1);
 
-  // const fetchCoins = async () => {
-  //   setLoading(true);
-  //   const { data } = await axios.get(CoinList(currency)); // through curely on data we are destructuring our data
-  //   setCoins(data);
-  //   setLoading(false);
-  // };
-
-  const fetchCoins = async () => {
-    setLoading(true)
-    try {
-      const { data } = await axios.get(CoinList(currency)); 
-      console.log(data);
-      setCoins(data)
-    setLoading(false)
-    } catch (error) {
-      console.error('Axios Error:', error);
-    }
-    
-  }
-
- // console.log(coins);
   useEffect(() => {
+    const fetchCoins = async () => {
+      setLoading(true)
+      try {
+        const { data } = await axios.get(CoinList(currency))
+        console.log(data);
+        setCoins(data)
+      setLoading(false)
+      } catch (error) {
+        console.error('Axios Error:', error);
+      }
+      
+    }
     fetchCoins();
   }, [currency]);
   // dark theme
@@ -95,11 +84,7 @@ const CoinsTable = (props) => {
     return coins.filter((coin) => coin.name.toLowerCase().includes(search));
   };
 
-  // const useStyles = makeStyles(() => {
-  //       row:{
 
-  //       }
-  // })
   const classes = useStyles(props);
 
   return (

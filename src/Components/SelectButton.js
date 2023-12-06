@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     //   margin: 5,
   },
 });
-const SelectButton = ({ children, selected, onClick, props }) => {
+const SelectButton = ({ children, onClick, props }) => {
  
 
   const classes = useStyles(props);

@@ -3,13 +3,6 @@ import { useEffect, useState } from "react";
 import { HistoricalChart } from "../Config/api";
 import { Line } from "react-chartjs-2";
 
-// import {
-//   CircularProgress,
-//   createTheme,
-//   makeStyles,
-//   ThemeProvider,
-// } from "@mui/styles";
-
 import { chartDays } from "../Config/data";
 import { CryptoState } from "../CryptoContext";
 import { CircularProgress } from "@mui/material";
@@ -53,8 +46,7 @@ const CoinInfo = ({ coin }) => {
 
   useEffect(() => {
     fetchHistoricData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [days]);
+  }, [days,currency]);
 
   const darkTheme = createTheme({
     palette: {
