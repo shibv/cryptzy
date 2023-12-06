@@ -10,3 +10,26 @@ a{
   text-decoration: none;
   color: aqua;
 }
+
+.container{
+  width: 75%;
+  display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ margin-top: 25;
+ padding: 40;
+}
+
+
+
+@media (max-width: 786px)  {
+  .container{
+    width: 100%;
+    margin-top: 0;
+    padding: 20;
+    padding-top: 0;
+    
+  }
+  
+}

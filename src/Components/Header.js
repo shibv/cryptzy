@@ -6,49 +6,34 @@ import {
   Select,
   MenuItem,
   createTheme,
-  ThemeProvider,
+  
 } from "@mui/material";
 import React from "react";
-import { makeStyles } from "@mui/styles";
+
 import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 
-const useStyles = makeStyles(() => ({
-  title: {
-    flex: 1,
-    color: "aqua",
-    fontFamily: "Montserrat",
-    fontWeight: "bold",
-    cursor: "pointer",
-  },
-  ban:{
-    backgroundImage:'url(./banner2.jpg)',
-  },
-}));
 
 const Header = () => {
-  const classess = useStyles();
+  
   const navigate = useNavigate();
 
   const { currency, setCurrency } = CryptoState();
 
 
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
-    },
-  });
+ 
 
   return (
-    <ThemeProvider theme={darkTheme}  >
+    
       <AppBar color="transparent" position="static">
         <Container>
           <Toolbar>
             <Typography
-              className={classess.title}
+              style={{flex: 1,
+                color: "aqua",
+                fontFamily: "Montserrat",
+                fontWeight: "bold",
+                cursor: "pointer",}}
               variant="h4"
               fontWeight='bold'
               onClick={() => navigate("/")}
@@ -72,7 +57,7 @@ const Header = () => {
           </Toolbar>
         </Container>
       </AppBar>
-    </ThemeProvider>
+ 
   );
 };
 

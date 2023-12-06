@@ -1,7 +1,9 @@
-import { makeStyles } from "@mui/styles";
-const useStyles = makeStyles({
-  selectbutton: {
-    border: "1px solid aqua",
+
+
+const SelectButton = ({ children, onClick, props }) => {
+ 
+  return (
+    <span onClick={onClick} style={{border: "1px solid aqua",
     borderRadius: 5,
     padding: 10,
     paddingLeft: 20,
@@ -15,17 +17,7 @@ const useStyles = makeStyles({
       backgroundColor: "aqua",
       color: "black",
     },
-    width: "22%",
-    //   margin: 5,
-  },
-});
-const SelectButton = ({ children, onClick, props }) => {
- 
-
-  const classes = useStyles(props);
-
-  return (
-    <span onClick={onClick} className={classes.selectbutton}>
+    width: "22%",}}>
       {children}
     </span>
   );

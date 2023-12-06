@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import { CryptoState } from "../../CryptoContext";
 import { TrendingCoins } from "../../Config/api";
@@ -9,20 +8,6 @@ import {
   LinearProgress
 } from "@mui/material";
 
-// css
-const useStyles = makeStyles(() => ({
-  carousel: {
-    marginTop: 50,
-  },
-  carouselItems: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    cursor: "pointer",
-    textTransform: "uppercase",
-    color: "white",
-  },
-}));
 
 // Integer number with commas function
 export function numberWithCommas(x) {
@@ -30,10 +15,10 @@ export function numberWithCommas(x) {
 }
 
 // function of carousal
-const Carousel = (props) => {
+const Carousel = () => {
   const [trending, setTrending] = useState([]);
 
-  const classess = useStyles(props);
+ 
   const [loading, setLoading] = useState(false);
 
   const { currency, symbol } = CryptoState();
@@ -53,7 +38,12 @@ const Carousel = (props) => {
     let profit = coin.price_change_percentage_24h >= 0;
 
     return (
-      <Link className={classess.carouselItems} to={`/coins/${coin.id}`}>
+      <Link style={{ display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      cursor: "pointer",
+      textTransform: "uppercase",
+      color: "white",}} to={`/coins/${coin.id}`}>
        
         <img
           src={coin?.image}
@@ -91,7 +81,7 @@ const Carousel = (props) => {
   };
 
   return (
-    <div className={classess.carousel}>
+    <div style={{marginTop: 50,}}>
       
        { loading ? ( <LinearProgress style={{ backgroundColor: "aqua" }} />) : (
           <AliceCarousel

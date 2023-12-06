@@ -8,39 +8,25 @@ import {
   TableHead,
   Table,
   TextField,
-  createTheme,
+ 
   TableRow,
   TableCell,
   TableBody,
   Pagination,
 } from "@mui/material";
-import { ThemeProvider } from "@mui/styles";
+
 import { Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
+
 
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const useStyles = makeStyles(() => ({
-  row: {
-    backgroundColor: "#16171a",
-    cursor: "pointer",
-    fontFamily: "Montserrat",
-    "&:hover": {
-      backgroundColor: "#131111",
-    },
-  },
-  pagination: {
-    "& .MuiPaginationItem-root": {
-      color: "aqua",
-    },
-  },
-}));
 
-const CoinsTable = (props) => {
+
+const CoinsTable = () => {
   // context
   const { currency, symbol } = CryptoState();
 
@@ -70,25 +56,15 @@ const CoinsTable = (props) => {
     }
     fetchCoins();
   }, [currency]);
-  // dark theme
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
-    },
-  });
-
+ 
   const handleSearch = () => {
     return coins.filter((coin) => coin.name.toLowerCase().includes(search));
   };
 
 
-  const classes = useStyles(props);
 
   return (
-    <ThemeProvider theme={darkTheme}>
+  
       <Container style={{ textAlign: "center" }}>
         <Typography
           variant="h4"
@@ -133,7 +109,12 @@ const CoinsTable = (props) => {
                     return (
                       <TableRow
                         onClick={() => history(`/coins/${row.id}`)}
-                        className={classes.row}
+                        style={{  backgroundColor: "#16171a",
+                        cursor: "pointer",
+                        fontFamily: "Montserrat",
+                        "&:hover": {
+                          backgroundColor: "#131111",
+                        },}}
                         key={row.name}
                       >
                         <TableCell
@@ -197,7 +178,7 @@ const CoinsTable = (props) => {
             justifyContent: "center",
             color: "white",
           }}
-          classes={{ul:classes.pagination}}
+          
           onChange={(_,value) => {
             setPage(value);
             window.scroll(0,450);
@@ -205,7 +186,7 @@ const CoinsTable = (props) => {
           }}
         ></Pagination>
       </Container>
-    </ThemeProvider>
+   
   );
 };
 

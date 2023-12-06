@@ -1,4 +1,4 @@
-import { makeStyles } from '@mui/styles';
+
 import {
     Container, Typography,
   } from "@mui/material";
@@ -6,36 +6,23 @@ import React from 'react'
 import Carousel from './Carousel';
 
 
-const useStyles = makeStyles(() => ({
-    banner:{
-         backgroundImage: 'url(./banner2.jpg)',
-       
 
-    },
-    bannerContent:{
-        height:400,
+
+
+const Banner = () => {
+    
+  return (
+    <div style={{ backgroundImage: 'url(./banner2.jpg)'}}>
+        <Container style={{ height:400,
         display:'flex',
         flexDirection:'column',
         paddingTop:25,
-        justifyContent:'space-around'
-    },
-    tagLine:{
-        display:'flex',
+        justifyContent:'space-around'}}  >
+            <div style={{ display:'flex',
         height:'40%',
         flexDirection:'column',
         justifyContent:'center',
-        textAlign:'center'
-    }
-
-  }))
-
-
-const Banner = (props) => {
-    const classess = useStyles(props)
-  return (
-    <div className={classess.banner}>
-        <Container className={classess.bannerContent}  >
-            <div className={classess.tagLine}>
+        textAlign:'center'}}>
                  <Typography variant='h2' style={{
                     fontWeight:'bold',
                     marginTop:75,
