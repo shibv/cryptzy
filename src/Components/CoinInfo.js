@@ -23,7 +23,7 @@ const CoinInfo = ({ coin }) => {
 
 
   const fetchHistoricData = async () => {
-    const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=${currency}&days=${days}`);
+    const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=INR&days=${days}`);
     setflag(true);
     setHistoricData(data.prices);
   };
