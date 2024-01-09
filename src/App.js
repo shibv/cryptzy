@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
        <div style={{ backgroundColor:"#14161a",
     color:'white',
-    minHeight:'100vh'}}>
+    minHeight: "100vh"}}>
         <Header/>
         <Routes>
         <Route path='/' Component={Homepage} exact ></Route>

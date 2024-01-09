@@ -1,6 +1,6 @@
 
 
-const SelectButton = ({ children, onClick, props }) => {
+const SelectButton = ({ children, onClick }) => {
  
   return (
     <span onClick={onClick} style={{border: "1px solid aqua",
